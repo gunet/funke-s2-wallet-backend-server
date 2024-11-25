@@ -165,7 +165,10 @@ noAuthUserController.post('/register-webauthn-finish', async (req: Request, res:
 			clientExtensionResults: credential.clientExtensionResults,
 		},
 		expectedChallenge: base64url.encode(challenge.challenge),
-		expectedOrigin: config.webauthn.origin,
+		expectedOrigin: [
+			config.webauthn.origin,
+			"android:apk-key-hash:DEvegOak87MZWC6pGyDa3hqKnNwptRv8iTeQssaM2ME", // TODO: Extract to config?
+		],
 		expectedRPID: config.webauthn.rp.id,
 		requireUserVerification: true,
 	});
